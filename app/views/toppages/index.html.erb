@@ -10,12 +10,14 @@
       <p>あなたの人生を変えた本・人にお勧めしたい本・学びが深まった本など、
         あなたがお気に入りの本の要約をぜひ投稿してください。</p>
       <p>他の人の投稿を読むことを通じて、本の理解がさらに深まったり、物事を理解する様々な視点を得ることができるかもしれません。</p>
-      <p>自分用のまとめのため、アウトプットのため、人との対話をするため等々お好きな用途でご利用ください。</p>
-    <a href="#" class="btn btn-primary btn-lg mb-3 btn-block">会員登録はこちら</a>
-    <a href="#" class="btn btn-success btn-lg mb-3 btn-block">ログインはこちら</a>
+      <p>自分用のまとめのため、アウトプットのため、他の人の感想を見るため等々お好きな用途でご利用ください。</p>
+      <%= link_to '会員登録', signup_path, class: 'btn btn-lg btn-primary btn-block' %>
+      <%= link_to 'ログイン', login_path, class: 'btn btn-lg btn-success btn-block' %>
   </aside>
   <div class="col-sm-8" style="background-color: #fff5f5;">
     <h3>最近の要約</h3>
-      <li>ここに最近の要約が200字ぐらいで10件表示されるようにする。</li>
+      <ul>
+        <li>ここに最近の要約が200字ぐらいで10件表示されるようにする。</li>
+      </ul>
   </div>
 </div>

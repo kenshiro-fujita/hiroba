@@ -1,4 +1,9 @@
 class UsersController < ApplicationController
+  before_action :require_user_logged_in, only: [:index, :show]
+
+  def index
+    @user = User.order(id: :desc).page(params[:page]).per(20)
+  end
 
   def show
     @user = User.find(params[:id])
@@ -24,6 +29,8 @@ class UsersController < ApplicationController
   def destroy
   end
   #成功後はトップページに戻るのでview不要
+
+  private
 
   def user_params
     params.require(:user).permit(:name, :email, :password, :password_confirmation)
