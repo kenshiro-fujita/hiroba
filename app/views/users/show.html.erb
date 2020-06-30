@@ -1,8 +1,9 @@
 <h3><%= @user.name %>さんのページ</h3>
-  <%= link_to '本の一覧に移動', user_path, class:'btn btn-success btn-lg' %>
-    <p>書評を投稿したい本を選んで書評を書いてください。</p>
+  <%= link_to '本の一覧へ', books_path, class:'btn btn-success btn-lg' %>
+  <p>書評を投稿したい本を選んで書評を書く。</p>
+
   <%= link_to 'フォロー', user_path, class:'btn btn-primary btn-lg' %>
-    <p>機能をフォローボタンに変える。</p>
+    <!--<p>表示名だけでなく機能をフォローボタンに変える。当該ユーザー以外にだけ表示する。</p>-->
     
 <div class="col-sm-12">
   <ul class="nav nav-tabs nav-justified mb-5">

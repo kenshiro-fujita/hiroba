@@ -1,0 +1,17 @@
+<h3 class="bg-success rounded sm-3 col-md-4 h-100">　本の詳細　</h3>
+<div class='row'>
+  <%= render 'books/book_aside' %>
+    <div class="col-sm-8"> 
+    <h2>書評全文</h2>
+      <div class="card mt-3">
+        <div class="card-header">
+          <%= "ユーザー名：#{@user.name}" %><br>
+          <%= "レビュータイトル：#{@review.rev_title}" %>
+        </div>
+        <div class="card-body">
+          <%= @review.content %>
+        </div>
+      </div>
+      <%= link_to "この書評を編集または削除する(当人にだけ表示)", edit_book_review_path(@book, @review), class: "btn btn-primary mt-3" %>
+    </div>
+</div>

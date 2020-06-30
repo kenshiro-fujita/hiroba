@@ -1,21 +1,38 @@
-<div class="center jumbotron">
-  <div class="text-center">
-    <h1>本の広場へようこそ</h1>
-    <p>このサイトは本の要約を通じて読書家がつながるサイト</p>
+<div class="jumbotron" style="background-color: #f0f8ff">
+<!--背景を図書館の画像にする-->
+  <div class="text-center" width="960px">
+    <h2>本の広場へようこそ</h2>
+    <p>書評を通じて読書家がつながるサイト</p>
   </div>
 </div>
-<div class="row">
-  <aside class="col-sm-4" style="background-color: #f5f5f5;">
-    <h3 class="py-3">本の広場とは</h3>
-      <p>あなたの人生を変えた本・人にお勧めしたい本・学びが深まった本など、
-        あなたがお気に入りの本の要約をぜひ投稿してください。</p>
-      <p>他の人の投稿を読むことを通じて、本の理解がさらに深まったり、物事を理解する様々な視点を得ることができるかもしれません。</p>
-      <p>自分用のまとめのため、読書経験のアウトプットのため、人との対話をするため等々お好きな用途でご利用ください。</p>
-    <a href="#" class="btn btn-primary btn-lg mb-3 btn-block">会員登録はこちら</a>
-    <a href="#" class="btn btn-success btn-lg mb-3 btn-block">ログインはこちら</a>
-  </aside>
-  <div class="col-sm-8" style="background-color: #fff5f5;">
-    <h3>最近の要約</h3>
-      <li>ここに最近の要約が200字ぐらいで10件表示されるようにする。</li>
+<div class="container">
+  <div class="row">
+    <aside class="col-md-3 border h-100" >
+      <h3 class="py-3">本の広場とは</h3>
+        <p>あなたの人生に影響を与えた本・人にお勧めしたい本・学びが深まった本など、
+          あなたがお気に入りの本の書評をぜひ投稿してください。</p>
+        <p>他の人の投稿を読むことを通じて、本の理解がさらに深まったり、様々な視点を得ることができるかもしれません。</p>
+        <p>自分用のまとめのため、アウトプットのため、人との対話をするため等々お好きな用途でご利用ください。</p>
+      <a href="../how_to_use" class="btn btn-info btn-lg mb-3 btn-block">使い方解説</a>
+      <a href="../login" class="btn btn-success btn-lg mb-3 btn-block">ログイン</a>
+      <a href="../users/new" class="btn btn-primary btn-lg mb-3 btn-block">会員登録</a>
+      <a href="../books" class="btn btn-secondary btn-lg mb-3 btn-block">登録本の一覧</a>
+    </aside>
+    <div class="col-md-9" >
+      <h3>最近の書評</h3>
+        <% @all_review.each do |review| %>
+          <div class="card mb-3">
+            <div class="card-header">
+              <%= link_to "著書名：本の題名", book_path(review.book_id) %><br>
+              <%= link_to "レビュータイトル：#{review.rev_title}", book_review_path(review.book_id, review.id) %>
+            </div>
+            <div class="card-body">
+              <%= review.created_at %><br>
+              <%= review.content %>
+            </div>
+          </div>
+        <% end %>
+        </li>
+    </div>
   </div>
 </div>

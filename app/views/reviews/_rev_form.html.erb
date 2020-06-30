@@ -1,0 +1,7 @@
+<%= form_with(model: [@book,@review], local: true) do |f| %>
+  <div class='form-group'>
+    <%= f.text_area :rev_title, placeholder:"書評のタイトルを入力してください(50文字以内)", class: 'form-control mb-3' %>
+    <%= f.text_area :content, class: 'form-control', rows: 10, placeholder:"書評を入力してください（200文字以上10,000字以下）。" %>
+  </div>
+  <%= f.submit '書評を投稿', class: 'btn btn-primary' %>
+<% end %>

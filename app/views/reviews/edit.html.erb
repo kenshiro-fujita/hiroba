@@ -1,0 +1,10 @@
+<h3 class="bg-success rounded sm-3 col-md-4 h-100">　本の詳細　</h3>
+<div class='row'>
+  <%= render 'books/book_aside' %>
+    <div class="col-sm-8"> 
+      <h2>書評を再投稿 ／ 削除</h2>
+      <%= render 'reviews/rev_form' %>
+      <%= link_to 'この書評を削除', book_review_path(@book, @review), method: :delete, data: { confirm: "削除してよろしいですか？" }, class: 'btn btn-danger mt-3' %>
+      <%= link_to 'この書評にリンク', edit_book_review_path(@book, @review), class: 'btn mt-3' %>
+    </div>
+</div>

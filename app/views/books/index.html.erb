@@ -1,0 +1,22 @@
+<% if @all_books.any? %>
+  <div class="row">
+    <% @all_books.each do |book| %>
+      <div class="col-md-4">
+        <div class="card mb-3">
+          <div class="card-header">
+            <%= link_to "題名：#{book.title}", book_path(book.id) %>
+          </div>
+          <div class="card-body">
+            著者：<%= book.author %><br>
+            出版社：<%= book.publisher %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+<%= link_to '本を登録する', new_book_path, class:"btn btn-success" %>
+
+<% else %>
+  <p>本が登録されていません。</p>
+  <%= link_to '本の登録はこちら', new_book_path, class:"btn btn-success" %>
+<% end %>

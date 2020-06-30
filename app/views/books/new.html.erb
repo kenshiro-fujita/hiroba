@@ -1,0 +1,39 @@
+<div class="text-center">
+  <h1>本の登録</h1>
+</div>
+
+<div class="row">
+  <div class="col-sm-6 offset-sm-3">
+
+    <%= form_with(model: @book, local: true) do |f| %>
+        <%= render 'layouts/error_messages', model: f.object %>
+    
+      <div class="form-group">
+        <%= f.label :title, 'タイトル' %>
+        <%= f.text_field :title, class: 'form-control' %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :author, '著者' %>
+        <%= f.text_field :author, class: 'form-control' %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :isbn, 'ISBN番号' %>
+        <%= f.text_field :isbn, class: 'form-control' %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :publisher, '出版社' %>
+        <%= f.text_field :publisher, class: 'form-control' %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :release_date, '出版日' %><br>
+        <%= f.date_select :release_date, class: 'form-control' %>
+      </div>
+
+      <%= f.submit '本を登録する', class: 'btn btn-primary btn-block' %>
+     <% end %>
+  </div>
+</div>
