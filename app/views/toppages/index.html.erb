@@ -10,7 +10,7 @@
     <aside class="col-md-3 border h-100" >
       <h3 class="py-3">本の広場とは</h3>
         <p>あなたの人生に影響を与えた本・人にお勧めしたい本・学びが深まった本など、
-          あなたがお気に入りの本の書評をぜひ投稿してください。</p>
+          あなたが読んだ本の書評を投稿してください。</p>
         <p>他の人の投稿を読むことを通じて、本の理解がさらに深まったり、様々な視点を得ることができるかもしれません。</p>
         <p>自分用のまとめのため、アウトプットのため、人との対話をするため等々お好きな用途でご利用ください。</p>
       <a href="../how_to_use" class="btn btn-info btn-lg mb-3 btn-block">使い方解説</a>
@@ -21,10 +21,13 @@
     <div class="col-md-9" >
       <h3>最近の書評</h3>
         <% @all_review.each do |review| %>
+          <% user = User.find(review.user_id) %>
           <div class="card mb-3">
             <div class="card-header">
-              <%= link_to "著書名：本の題名", book_path(review.book_id) %><br>
-              <%= link_to "レビュータイトル：#{review.rev_title}", book_review_path(review.book_id, review.id) %>
+              <% book = Book.find(review.book_id) %>
+              <%= link_to "作品名：#{book.title}", book_path(review.book_id) %><br>
+              <%= link_to "レビュータイトル：#{review.rev_title}", book_review_path(review.book_id, review.id) %><br>
+              <%= link_to "投稿ユーザー：#{user.name} さん", user_path(user) %>
             </div>
             <div class="card-body">
               <%= review.created_at %><br>

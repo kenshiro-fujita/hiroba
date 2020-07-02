@@ -18,9 +18,19 @@ validates :password, presence: true,
   has_many :reverses_of_relationship, class_name: 'Relationship', foreign_key: 'follow_id'
   has_many :followers, through: :reverses_of_relationship, source: :user #自分をフォローしているユーザー一覧を取得
   
+  has_many :favorites
+  has_many :likes, through: :favorites, source: :review
+  #1行目がuserがお気に入りした書評と一対多、2行目でその書評を取得（user1.likes）
+  # likesなる関係は、faroriveテーブル（モデル）のreviewカラムと当該userのペアですよということを追記。
+  
+  has_many :recommendations
+  has_many :importants, through: :recommendations, source: :book
+  # 同じくuser.importantでおすすめ本の一覧を取得。importantなる関係はrecommendationsのbookカラムとのペア
+  
+  # user同士のフォロー関係を中間テーブルを通じて実現するメソッド
   def follow(other_user)
     unless self == other_user
-    self.relationship.find_or_create_by(follow_id: other_user.id)
+      self.relationships.find_or_create_by(follow_id: other_user.id)
     end
   end
   
@@ -32,5 +42,31 @@ validates :password, presence: true,
   def following?(other_user)
     self.followings.include?(other_user)
   end
+
+  # userがreviewをお気に入りするための関係を中間テーブルを通じて実現するメソッド  
+  def great(one_review)
+    self.favorites.find_or_create_by(review_id: one_review.id)
+  end
   
+  def ungreat(one_review)
+    fav = self.favorites.find_by(review_id: one_review.id)
+    fav.destroy if fav
+  end
+  
+  def greated?(one_review)
+    self.likes.include?(one_review)
+  end
+  
+  def recommend(one_book)
+    self.recommendations.find_or_create_by(book_id: one_book.id)
+  end
+  
+  def unrecommend(one_book)
+    recom = self.recommendations.find_by(book_id: one_book.id)
+    recom.destroy if recom
+  end
+  
+  def recommended?(one_book)
+    self.importants.include?(one_book)
+  end
 end

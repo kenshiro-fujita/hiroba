@@ -1,0 +1,12 @@
+<% if current_user.recommended?(one_book) %>
+  <%= form_with(model: current_user.recommendations.find_by(book_id: one_book.id), local: true, method: :delete ) do |f| %>
+    <%= hidden_field_tag :book_id, one_book.id %>
+    <%= f.submit 'おススメ解除', class: 'btn btn-danger btn-lg mb-5' %>
+  <% end %>
+<% else %>
+  <!--お気に入りしてない時の処理(お気に入り登録)-->
+  <%= form_with(model: current_user.recommendations.build, local: true) do |f| %>
+    <%= hidden_field_tag :book_id, one_book.id %>
+    <%= f.submit '本をオススメ登録', class: 'btn btn-success btn-lg mb-5' %>
+  <% end %>
+<% end %>

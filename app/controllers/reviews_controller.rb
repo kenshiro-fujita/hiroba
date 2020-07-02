@@ -6,21 +6,21 @@ class ReviewsController < ApplicationController
   end
   
   def show
-     @book = Book.find(params[:book_id])
-     @review = Review.find(params[:id])
-     @user = User.find(@review.user_id)
+    @book = Book.find(params[:book_id])
+    @review = Review.find(params[:id])
+    @user = User.find(@review.user_id)
   end
 
   def create
     @review = current_user.reviews.build(review_params)
-    @review.book_id = params[:book_id].to_i #ネスト構造にしたらこれで取得できた。hidden_field は意味なさそう。
+    @review.book_id = params[:book_id].to_i #ネスト構造にしたらこれで取得できた。hidden_field は意味無し。
 
     if @review.save
       flash[:success] = '書評を投稿しました'
-      redirect_to books_path
+      redirect_to book_review_path(@review.book_id, @review.id)
     else
       flash[:danger] = '書評の投稿に失敗しました'
-      redirect_to books_path
+      redirect_to book_path(@review.book_id)
     end
   end
 
@@ -45,11 +45,12 @@ class ReviewsController < ApplicationController
   #成功後は review → show に戻るようにする。
 
   def destroy
+    @book = Book.find(@review.book_id)
     @review.destroy
     flash[:success] = "書評を削除しました"
-    # redirect_to book_url(@review.book_id)
+    redirect_to book_path(@book)
   end
-  #成功後は当該bookのページに戻るようにする。
+  #成功後は当該bookのページに戻るようにしたい。
   
   private
   
@@ -60,7 +61,7 @@ class ReviewsController < ApplicationController
   def correct_user
     @review = current_user.reviews.find_by(id: params[:id]) #current_userはsession helperで定義。
     unless @review
-        redirect_to root_url
+      redirect_to root_url
     end
   end
   

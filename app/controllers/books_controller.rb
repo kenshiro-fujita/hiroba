@@ -5,11 +5,18 @@ class BooksController < ApplicationController
 
   def show
     @book = Book.find(params[:id]) #bookに紐づいたreviewは book.reviewsで取得できる。
-    @review = current_user.reviews.build #投稿フォーム用の空インスタンス
+    @user = current_user
+
+    if logged_in?
+      @review = current_user.reviews.build #投稿フォーム用の空インスタンス。
+      @user_review = Review.where(user_id: @user, book_id: @book).first #条件分岐用
+    end
+
   end
 
   def new
-    @book = Book.new　#book投稿用の空インスタンス
+    @book = Book.new
+    #投稿フォーム用空インスタンス
   end
 
   def create

@@ -1,14 +1,14 @@
 <aside class='col-sm-4'>
-  <table class="table">
+  <table class="table text-center">
     <tr><td>題名</td><td><%= @book.title %></td></tr>
     <tr><td>著者</td><td><%= @book.author %></td></tr>
     <tr><td>本ID</td><td><%= @book.id %></td></tr>    
     <tr><td>ISBN</td><td><%= @book.isbn %></td></tr>
     <tr><td>出版社</td><td><%= @book.publisher %></td></tr>
-    <tr><td>出版日</td><td><%= @book.release_date %></td></tr>    
+    <tr><td>初版発売日</td><td><%= @book.release_date %></td></tr>    
   </table>
-  
-  <a href="#" class="btn btn-success btn-lg mb-3">この本をおススメ登録</a><br>
+
+  <%= render 'recommendations/recommend_button', one_book: @book %>
   <div class="mt-100"><a href="/books/"><h5>本の一覧へ</h5></a></div><br>
   <h5><%= link_to 'この本の書評一覧へ', book_path(@book.id) %><h5>
 </aside>

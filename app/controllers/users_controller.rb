@@ -6,6 +6,9 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    @review = @user.reviews
+    @review2 = Review.where(user_id: @user.id)
+    current_user = current_user
   end
   
   def new

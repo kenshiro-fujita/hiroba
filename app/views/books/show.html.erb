@@ -1,25 +1,21 @@
 <h3 class="bg-success rounded sm-3 col-md-4 h-100">　本の詳細　</h3>
 <div class='row'>
   <%= render 'books/book_aside' %>
-    <div class="col-sm-8">  
-    <!--投稿フォーム-->
-      <%= render 'reviews/rev_form' %>
-        <p>本id :<%= @book.id %></p>
-        <p>ユーザーid :<%= @review.user_id %></p>
-      <% if @book.reviews.any? %>
-        <% @book.reviews.order(id: :desc).each do |review| %>
-          <div class="card mb-3">
-            <div class="card-header">
-              <%= link_to "レビュータイトル：#{review.rev_title}", book_review_path(@book.id, review.id) %>
-            </div>
-            <div class="card-body">
-              <p>ユーザーID：<%= review.user_id %></p>
-              <%= review.content %>
-            </div>
-          </div>
-        <% end %>
+  <div class="col-sm-8"> 
+    <% if not logged_in? %>
+      <h3>ログインすると書評の投稿が可能です</h3>
+    <% else%>
+      <% if @user_review.nil? %>
+        <!-- 投稿フォーム -->
+        <%= render 'reviews/rev_form' %>
       <% else %>
-        <h2>この本への書評の投稿がありません。</h2>
+        <div>  
+          既に書評を投稿済みです。
+          <%= link_to "#{@user.name}さんのレビュー", book_review_path(@book, @user_review) %>
+        </div>
       <% end %>
-    </div>
+    <% end %>
+    <!-- この本に対する書評 -->
+    <%= render 'books/review_for_this_book' %>
+  </div>
 </div>

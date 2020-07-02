@@ -1,11 +1,13 @@
 <h3><%= @user.name %>さんのページ</h3>
   <%= link_to '本の一覧へ', books_path, class:'btn btn-success btn-lg' %>
   <p>書評を投稿したい本を選んで書評を書く。</p>
-
-  <%= link_to 'フォロー', user_path, class:'btn btn-primary btn-lg' %>
-    <!--<p>表示名だけでなく機能をフォローボタンに変える。当該ユーザー以外にだけ表示する。</p>-->
-    
+  <%= render 'relationships/follow_button', now_user: @user %>
 <div class="col-sm-12">
+  <% @review2.each do |review| %>
+    <%= review.rev_title %>
+    <%= review.content %><br>
+  <% end %>
+  <!--終わり-->
   <ul class="nav nav-tabs nav-justified mb-5">
     <li class="nav-item"><a href="#" class="nav-link">タイムライン</a></li>
     <li class="nav-item"><a href="#" class="nav-link">お気に入り書評</a></li>
