@@ -1,26 +1,23 @@
-<% if @all_books.any? %>
-  <div class="row">
-    <% @all_books.each do |book| %>
-      <div class="col-md-4">
-        <div class="card mb-3">
-          <div class="card-header">
-            <%= link_to "題名：#{book.title}", book_path(book.id) %>
-          </div>
-          <div class="card-body">
-            著者：<%= book.author %><br>
-            出版社：<%= book.publisher %>
-          </div>
-        </div>
-      </div>
-    <% end %>
+<!--本の検索フォームを設置-->
+<%= search_form_for @search do |f| %>
+  <div class="input-group">
+    <%= f.label :title_cont, '書籍名で検索' %>
+    <span class="input-group-btn col-sm-6">
+      <%= f.search_field :title_cont, class: "form-control" %>
+      <div class="actions mb-3 mt-2"><%= f.submit '検索' %></div>
+    </span>
   </div>
+<% end %>
 
+<% if @books.any? %>
+  <%= render 'books/book_summary', books: @books %>
 <% else %>
   <p>本が登録されていません。</p>
 <% end %>
 
 <% if logged_in? %>
-  <%= link_to '本を登録する', new_book_path, class:"btn btn-success" %>
+  <p></p>
+  <%= link_to '本を登録する', new_book_path, class:'btn btn-success' %>
 <% else %>
-  <p>会員になると本を投稿できます。</p>
+  <p>会員になると新しく本を登録できます。</p>
 <% end %>

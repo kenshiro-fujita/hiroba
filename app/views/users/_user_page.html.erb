@@ -1,0 +1,13 @@
+<h3><%= @user.name %>さんのページ</h3>
+  <%= link_to '本の一覧へ', books_path, class:'btn btn-success btn-lg' %>
+  <p>書評を投稿したい本を選んで書評を書く。</p>
+  <%= render 'relationships/follow_button', now_user: @user %><br>
+<div class="col-sm-12">
+  <ul class="nav nav-tabs nav-justified mb-5">
+    <li class="nav-item"><a href="<%= user_path(@user) %>" class="nav-link <%= 'active' if current_page?(user_path(@user)) %>">タイムライン<span class="badge badge-dark ml-2"><%= @count_reviews %></span></a></li>
+    <li class="nav-item"><a href="<%= likes_user_path(@user)%>" class="nav-link <%= 'active' if current_page?(likes_user_path(@user)) %>">お気に入り書評<span class="badge badge-dark ml-2"><%= @count_likes %></span></a></li>
+    <li class="nav-item"><a href="<%= importants_user_path(@user)%>" class="nav-link <%= 'active' if current_page?(importants_user_path(@user)) %>">オススメ本<span class="badge badge-dark ml-2"><%= @count_importants %></span></a></li>
+    <li class="nav-item"><a href="<%= followings_user_path(@user) %>" class="nav-link <%= 'active' if current_page?(followings_user_path(@user)) %>">フォロー<span class="badge badge-dark ml-2"><%= @count_followings %></span></a></li>
+    <li class="nav-item"><a href="<%= followers_user_path(@user)%>" class="nav-link <%= 'active' if current_page?(followers_user_path(@user)) %>">フォロワー<span class="badge badge-dark ml-2"><%= @count_followers %></span></a></li>
+  </ul>
+</div>

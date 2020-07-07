@@ -1,6 +1,10 @@
 class BooksController < ApplicationController
+  before_action :require_user_logged_in, only:[:create]
+  before_action :set_search, only:[:index]
+  
   def index
-    @all_books = Book.order(id: :desc).page(params[:page]).per(30)
+    @search = Book.ransack(params[:q])
+    @books = @search.result.sort.reverse
   end
 
   def show
@@ -33,6 +37,11 @@ class BooksController < ApplicationController
   
   def book_params
     params.require(:book).permit(:title, :author, :isbn, :publisher, :release_date)
+  end
+  
+  def set_search
+    @search = Book.ransack(params[:q])
+    @books = @search.result
   end
   
 end

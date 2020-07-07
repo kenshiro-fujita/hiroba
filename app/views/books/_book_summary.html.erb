@@ -1,14 +1,15 @@
 <div class="row">
-  <% users.each do |user| %>
+  <% books.each do |book| %>
     <div class="col-md-4">
       <div class="card mb-3">
         <div class="card-header">
-          <%= link_to "#{user.name} さん", user_path(user)  %>
+          <%= link_to "題名：#{book.title}", book_path(book) %>
         </div>
         <div class="card-body">
-          投稿レビュー数：<%= user.reviews.count %>
+          著者：<%= book.author %><br>
+          出版社：<%= book.publisher %>
         </div>
       </div>
     </div>
   <% end %>
-</div>
+</div

@@ -25,7 +25,7 @@ validates :password, presence: true,
   
   has_many :recommendations
   has_many :importants, through: :recommendations, source: :book
-  # 同じくuser.importantでおすすめ本の一覧を取得。importantなる関係はrecommendationsのbookカラムとのペア
+  # 同じくuser.importantsでおすすめ本の一覧を取得。importantなる関係はrecommendationsのbookカラムとのペア
   
   # user同士のフォロー関係を中間テーブルを通じて実現するメソッド
   def follow(other_user)
@@ -41,6 +41,10 @@ validates :password, presence: true,
   
   def following?(other_user)
     self.followings.include?(other_user)
+  end
+  
+  def my_reviews
+    Review.where(user_id: self.following_ids + [self.id])
   end
 
   # userがreviewをお気に入りするための関係を中間テーブルを通じて実現するメソッド  

@@ -30,10 +30,15 @@
 
       <div class="form-group">
         <%= f.label :release_date, '出版日' %><br>
-        <%= f.date_select :release_date, class: 'form-control' %>
+        <%= f.date_select(
+            :release_date,
+            use_month_numbers: true,
+            start_year: 1940,
+            end_year: (Time.now.year),
+             date_separator: '/') %>
       </div>
 
-      <%= f.submit '本を登録する', class: 'btn btn-primary btn-block' %>
+      <%= f.submit '本を登録する', class: 'btn btn-success btn-block' %>
      <% end %>
   </div>
 </div>

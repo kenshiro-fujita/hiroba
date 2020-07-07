@@ -14,28 +14,15 @@
         <p>他の人の投稿を読むことを通じて、本の理解がさらに深まったり、様々な視点を得ることができるかもしれません。</p>
         <p>自分用のまとめのため、アウトプットのため、人との対話をするため等々お好きな用途でご利用ください。</p>
       <a href="../how_to_use" class="btn btn-info btn-lg mb-3 btn-block">使い方解説</a>
-      <a href="../login" class="btn btn-success btn-lg mb-3 btn-block">ログイン</a>
-      <a href="../users/new" class="btn btn-primary btn-lg mb-3 btn-block">会員登録</a>
       <a href="../books" class="btn btn-secondary btn-lg mb-3 btn-block">登録本の一覧</a>
+      <% unless logged_in? %>
+        <a href="../login" class="btn btn-success btn-lg mb-3 btn-block">ログイン</a>
+        <a href="../users/new" class="btn btn-primary btn-lg mb-3 btn-block">会員登録</a>
+      <% end %>
     </aside>
     <div class="col-md-9" >
       <h3>最近の書評</h3>
-        <% @all_review.each do |review| %>
-          <% user = User.find(review.user_id) %>
-          <div class="card mb-3">
-            <div class="card-header">
-              <% book = Book.find(review.book_id) %>
-              <%= link_to "作品名：#{book.title}", book_path(review.book_id) %><br>
-              <%= link_to "レビュータイトル：#{review.rev_title}", book_review_path(review.book_id, review.id) %><br>
-              <%= link_to "投稿ユーザー：#{user.name} さん", user_path(user) %>
-            </div>
-            <div class="card-body">
-              <%= review.created_at %><br>
-              <%= review.content %>
-            </div>
-          </div>
-        <% end %>
-        </li>
+        <%= render 'reviews/review' %>
     </div>
   </div>
 </div>

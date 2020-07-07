@@ -1,10 +1,9 @@
-<% unless (current_user == now_user) %>
-<!--current_user(ログイン中のユーザー)がアクセス中のユーザー（@user → now_user）で無い時だけ表示-->
+<% unless (current_user == now_user) || (current_user.nil?) %>
+<!--current_user(ログイン中のユーザー)がアクセス中のユーザー（@user → now_user）で無く、ログインしている時だけ表示-->
   <% if current_user.following?(now_user) %>
     <!--フォローしていた場合の処理-->
     <%= form_with(model: current_user.relationships.find_by(follow_id: now_user.id), local: true, method: :delete ) do |f| %>
       <%= hidden_field_tag :follow_id, now_user.id %>
-        <!--フォローされている側のidとしてuser(今表示しているuser)を取得。すでにあるrelationshipsを検索済みなのになんでまたhiddenで送るのか？-->
       <%= f.submit 'フォローを解除', class: 'btn btn-danger' %>
     <% end %>
   <% else %>

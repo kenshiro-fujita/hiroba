@@ -6,9 +6,9 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    @review = @user.reviews
+    @reviews = @user.my_reviews.order(id: :desc).page(params[:page])
     @review2 = Review.where(user_id: @user.id)
-    current_user = current_user
+    counts(@user)
   end
   
   def new
@@ -49,6 +49,31 @@ class UsersController < ApplicationController
   def destroy
   end
   #成功後はトップページに戻るのでview不要
+  
+  def likes
+    @user = User.find(params[:id])
+    @reviews = @user.likes.page(params[:page])
+    counts(@user)
+  end
+  
+  def importants
+    @user = User.find(params[:id])
+    @books = @user.importants.page(params[:page])
+    counts(@user)
+  end
+  
+  def followings
+    @user = User.find(params[:id])
+    @all_follow = @user.followings.page(params[:page])
+    counts(@user)
+  end
+  
+  def followers
+    @user = User.find(params[:id])
+    @all_follower = @user.followers.page(params[:page])
+    counts(@user)
+  end
+  
   
   private
   def user_params

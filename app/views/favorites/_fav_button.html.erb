@@ -1,13 +1,15 @@
-<% if current_user.greated?(one_review) %>
-  <!--お気に入り済みの処理（解除）-->
-  <%= form_with(model: current_user.favorites.find_by(review_id: one_review.id), local: true, method: :delete ) do |f| %>
-    <%= hidden_field_tag :review_id, one_review.id %>
-    <%= f.submit 'お気に入り解除', class: 'btn btn-danger mt-3' %>
-  <% end %>
-<% else %>
-  <!--お気に入りしてない時の処理(お気に入り登録)-->
-  <%= form_with(model: current_user.favorites.build, local: true) do |f| %>
-    <%= hidden_field_tag :review_id, one_review.id %>
-    <%= f.submit '書評をお気に入り', class: 'btn btn-info mt-3' %>
+<% unless current_user.nil? %>
+  <% if current_user.greated?(one_review) %>
+    <!--お気に入り済みの処理（解除）-->
+    <%= form_with(model: current_user.favorites.find_by(review_id: one_review.id), local: true, method: :delete ) do |f| %>
+      <%= hidden_field_tag :review_id, one_review.id %>
+      <%= f.submit 'お気に入り解除', class: 'btn btn-danger mt-3' %>
+    <% end %>
+  <% else %>
+    <!--お気に入りしてない時の処理(お気に入り登録)-->
+    <%= form_with(model: current_user.favorites.build, local: true) do |f| %>
+      <%= hidden_field_tag :review_id, one_review.id %>
+      <%= f.submit '書評をお気に入り', class: 'btn btn-info mt-3' %>
+    <% end %>
   <% end %>
 <% end %>

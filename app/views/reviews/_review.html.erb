@@ -1,0 +1,18 @@
+<% @reviews.each do |review| %>
+  <% user = User.find(review.user_id) %>
+  <% book = Book.find(review.book_id) %>
+    <div class="card mb-3">
+      <div class="card-header">
+        <% unless current_page?(book_path(book)) %>
+          <%= link_to "作品名：#{book.title}", book_path(book.id) %><br>
+        <% end %>
+        <% unless current_page?(user_path(user)) %>
+          <%= link_to "投稿ユーザー：#{user.name} さん", user_path(user) %><br>
+        <% end %>
+        <%= link_to "レビュータイトル：#{review.rev_title}", book_review_path(book.id, review.id) %>
+      </div>
+      <div class="card-body">
+        <%= review.content %>
+      </div>
+    </div>
+<% end %>
