@@ -230,17 +230,11 @@ DEPENDENCIES
   kaminari
   listen (>= 3.0.5, < 3.2)
   mysql2 (>= 0.4.4, < 0.6.0)
-<<<<<<< HEAD
-  puma (~> 3.11)
-  rails (~> 5.2.2)
   ransack
   rspec-rails
   rubocop
   rubocop-rails
-=======
-  puma (~> 3.12)
   rails (~> 5.2.4.3)
->>>>>>> 082d268d50c1bce5e23bbf6f35331eee994c6729
   sass-rails (~> 5.0)
   spring
   spring-watcher-listen (~> 2.0.0)
