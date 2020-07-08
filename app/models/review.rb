@@ -15,7 +15,7 @@ class Review < ApplicationRecord
   validates :user_id, presence: true, uniqueness: {scope: :book_id  }
   validates :book_id, presence: true
   validates :content, presence: true, 
-    length: {minimum: 20, maximum: 100000}
+    length: {minimum: 20, maximum: 10000}
   validates :rev_title, presence: true, length: {maximum: 50}
   
 end
