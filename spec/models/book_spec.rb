@@ -34,7 +34,7 @@ RSpec.describe Book, type: :model do
         @book.isbn = 123456789
         expect(@book).to be_invalid
       end
-      it 'ISBNの10桁・13桁の間であるため無効。' do
+      it 'ISBNの10~13桁の間であるため無効。' do
         @book.isbn = 1234567890123456
         expect(@book).to be_invalid
       end
@@ -48,7 +48,7 @@ RSpec.describe Book, type: :model do
         @book.isbn = '123456789a'
         expect(@book).to be_invalid
       end
-      it 'ISBNがnilであるため登録できない' do
+      it 'ISBNがnilであるため無効' do
         @book.isbn = ''
         expect(@book).to be_invalid
       end
