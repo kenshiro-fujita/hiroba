@@ -2,20 +2,12 @@ require 'rails_helper'
 
 RSpec.describe Book, type: :model do
   describe '適切な条件であるため有効' do
-    before do
-      @book = Book.new(
-        title: 'sample_book_title',
-        author: 'sample_author',
-        publisher: 'sample_publisher',
-        release_date: Date.today
-        )
-    end
     it '10桁のisbn・nil無し・適切なrelease_date' do
-      @book.isbn = 1234567890
+      @book = FactoryBot.create(:free)
       expect(@book).to be_valid
     end
     it '13桁のisbn・nil無し・適切なrelease_date' do
-      @book.isbn = 1234567890123
+      @book = FactoryBot.create(:infection)
       expect(@book).to be_valid
     end
   end
@@ -29,26 +21,26 @@ RSpec.describe Book, type: :model do
         release_date: Date.today
         )
     end
-    context 'ISBNの桁数' do
-      it 'ISBNの桁数が少ないため無効。' do
+    context '桁数' do
+      it '桁数が少ないため無効。' do
         @book.isbn = 123456789
         expect(@book).to be_invalid
       end
-      it 'ISBNの10~13桁の間であるため無効。' do
+      it '10~13桁の間であるため無効。' do
         @book.isbn = 1234567890123456
         expect(@book).to be_invalid
       end
-      it 'ISBNの桁数が多いため無効。' do
+      it '桁数が多いため無効。' do
         @book.isbn = 1234567890123456
         expect(@book).to be_invalid
       end
     end
-    context 'ISBNの数値以外の不正'
+    context '数値以外の不正'
       it '数値以外が使われているため無効' do
         @book.isbn = '123456789a'
         expect(@book).to be_invalid
       end
-      it 'ISBNがnilであるため無効' do
+      it 'nilであるため無効' do
         @book.isbn = ''
         expect(@book).to be_invalid
       end

@@ -58,6 +58,10 @@ RSpec.describe User, type: :model do
         params.merge!(password: 'asdf1234@', password_confirmation: 'asdf1234@')
         expect(user).to be_invalid
       end
+      it 'パスワードと確認欄の値が不一致のため無効' do
+        params.merge!(password: 'asdf12345', password_confirmation: 'asdf1234')
+        expect(user).to be_invalid
+      end
     end
   end
 end

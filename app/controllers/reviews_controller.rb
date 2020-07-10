@@ -1,6 +1,5 @@
 class ReviewsController < ApplicationController
-    before_action :require_user_logged_in, only: [:new, :edit, :destroy]
-    before_action :correct_user, only: [:new, :edit, :destroy]
+  before_action :correct_user, only: [:edit, :update, :destroy]
 
   def index
   end
@@ -50,7 +49,6 @@ class ReviewsController < ApplicationController
     flash[:success] = "書評を削除しました"
     redirect_to book_path(@book)
   end
-  #成功後は当該bookのページに戻るようにしたい。
   
   private
   

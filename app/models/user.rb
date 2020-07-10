@@ -48,29 +48,29 @@ validates :password, presence: true,
   end
 
   # userがreviewをお気に入りするための関係を中間テーブルを通じて実現するメソッド  
-  def great(one_review)
-    self.favorites.find_or_create_by(review_id: one_review.id)
+  def great(review)
+    self.favorites.find_or_create_by(review_id: review.id)
   end
   
-  def ungreat(one_review)
-    fav = self.favorites.find_by(review_id: one_review.id)
+  def ungreat(review)
+    fav = self.favorites.find_by(review_id: review.id)
     fav.destroy if fav
   end
   
-  def greated?(one_review)
-    self.likes.include?(one_review)
+  def greated?(review)
+    self.likes.include?(review)
   end
   
-  def recommend(one_book)
-    self.recommendations.find_or_create_by(book_id: one_book.id)
+  def recommend(book)
+    self.recommendations.find_or_create_by(book_id: book.id)
   end
   
-  def unrecommend(one_book)
-    recom = self.recommendations.find_by(book_id: one_book.id)
+  def unrecommend(book)
+    recom = self.recommendations.find_by(book_id: book.id)
     recom.destroy if recom
   end
   
-  def recommended?(one_book)
-    self.importants.include?(one_book)
+  def recommended?(book)
+    self.importants.include?(book)
   end
 end

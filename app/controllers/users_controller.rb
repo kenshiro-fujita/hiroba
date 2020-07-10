@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :require_user_logged_in, only:[:edit, :update, :destroy]
+  before_action :correct_user, only:[:edit, :update, :destroy]
 
   def index
   end
@@ -7,7 +7,6 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @reviews = @user.my_reviews.order(id: :desc).page(params[:page])
-    @review2 = Review.where(user_id: @user.id)
     counts(@user)
   end
   
@@ -80,5 +79,10 @@ class UsersController < ApplicationController
     params.require(:user).permit(:name, :email, :password, :password_confirmation)
   end
   
-
+  def correct_user
+    user = User.find(params[:id])
+    unless user.id == current_user.id
+      redirect_to root_path
+    end
+  end
 end
