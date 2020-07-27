@@ -2,7 +2,6 @@
   <nav class="navbar navbar-expand-sm navbar-light bg-light p-1">
     <ul class="navbar-nav">
       <a class="navbar-brand" href="/"> <img src="/assets/topicon.png" class="img-fluid ml-1" width="70em" height="70em"></a>
-      <a class="nav-item"><%= link_to '使い方',how_to_use_path, class: 'nav-link d-flex align-items-center' %></a>
     </ul>
     <% if logged_in? %>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent">
@@ -15,7 +14,7 @@
         <li class="nav-item"><%= link_to 'ログアウト',logout_path, method: :delete, class: 'nav-link' %></li>
       </ul>
     </div>
-    
+
     <% else %>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent">
         <span class="navbar-toggler-icon"></span>
