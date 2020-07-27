@@ -1,6 +1,6 @@
 class FavoritesController < ApplicationController
   before_action :require_user_logged_in
-  
+
   def create
     good_rev = Review.find(params[:review_id])
     current_user.great(good_rev)

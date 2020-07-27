@@ -16,7 +16,7 @@ describe BooksController, type: :request do
       expect(response.body).to include '感染症パニックを防げ'
     end
   end
-  
+
   describe 'GET #show' do
     let(:infection) { FactoryBot.create :infection }
     context 'bookが存在する' do
@@ -40,33 +40,33 @@ describe BooksController, type: :request do
       expect(response.status).to eq 200
     end
   end
-  
+
   describe 'POST #create' do
     context '適切な条件' do
       before 'ログイン状態' do
         @user = FactoryBot.create(:user)
         allow_any_instance_of(ActionDispatch::Request)
-        .to receive(:session).and_return(user_id: @user.id)
+          .to receive(:session).and_return(user_id: @user.id)
       end
-        it 'リクエストに成功する' do
-          post books_url, params: { book: FactoryBot.attributes_for(:book) }
-          expect(response.status).to eq 302
-        end
-        it 'bookが登録される' do
-          expect do
-            post books_url, params: { book: FactoryBot.attributes_for(:free) }
-          end.to change(Book, :count).from(0).to(1)
-        end
-        it '当該bookページにリダイレクトされる' do
+      it 'リクエストに成功する' do
+        post books_url, params: { book: FactoryBot.attributes_for(:book) }
+        expect(response.status).to eq 302
+      end
+      it 'bookが登録される' do
+        expect do
           post books_url, params: { book: FactoryBot.attributes_for(:free) }
-          expect(response).to redirect_to Book.last
-        end
+        end.to change(Book, :count).from(0).to(1)
+      end
+      it '当該bookページにリダイレクトされる' do
+        post books_url, params: { book: FactoryBot.attributes_for(:free) }
+        expect(response).to redirect_to Book.last
+      end
     end
     context '不適切な入力値' do
       before 'ログイン状態' do
         @user = FactoryBot.create(:user)
         allow_any_instance_of(ActionDispatch::Request)
-        .to receive(:session).and_return(user_id: @user.id)
+          .to receive(:session).and_return(user_id: @user.id)
       end
       it 'リクエストには成功する' do
         post books_url, params: { book: FactoryBot.attributes_for(:fail_infection) }
@@ -85,7 +85,7 @@ describe BooksController, type: :request do
     context 'ログインせずに登録' do
       it 'ログインユーザーのみ登録可能なため失敗' do
         expect do
-        post books_url, params: { book: FactoryBot.attributes_for(:free) }
+          post books_url, params: { book: FactoryBot.attributes_for(:free) }
         end.not_to change(Book, :count)
       end
     end

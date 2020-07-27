@@ -1,6 +1,5 @@
 require 'rails_helper'
 describe ReviewsController, type: :request do
-
   describe 'GET #show' do
     before do
       # @user = FactoryBot.create(:user)
@@ -31,7 +30,7 @@ describe ReviewsController, type: :request do
       before do
         @user = FactoryBot.create(:user)
         allow_any_instance_of(ActionDispatch::Request)
-        .to receive(:session).and_return(user_id: @user.id)
+          .to receive(:session).and_return(user_id: @user.id)
         @book = FactoryBot.create(:infection)
       end
       it 'リクエストに成功する' do
@@ -52,7 +51,7 @@ describe ReviewsController, type: :request do
       before do
         @user = FactoryBot.create(:kimika)
         allow_any_instance_of(ActionDispatch::Request)
-        .to receive(:session).and_return(user_id: @user.id)
+          .to receive(:session).and_return(user_id: @user.id)
         @book = FactoryBot.create(:infection)
       end
       it 'リクエストには成功する' do
@@ -76,7 +75,7 @@ describe ReviewsController, type: :request do
     #   end
     # end
   end
-  
+
   # describe 'GET #edit' do
   # review.createすると作れるが、そのreviewのuser_idを持ったuserを作る方法がわからない。
   # 調べて再度実装。今の方法(before内部は@reviewの行のみ実行)だと@userはid2、@reviewのuser_idは1になる。

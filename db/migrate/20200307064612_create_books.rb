@@ -8,7 +8,7 @@ class CreateBooks < ActiveRecord::Migration[5.2]
       t.date :release_date
 
       t.timestamps
-      
+
       t.index [:isbn], unique: true
     end
   end

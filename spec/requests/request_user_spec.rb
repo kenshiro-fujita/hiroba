@@ -18,14 +18,14 @@ describe UsersController, type: :request do
       it { is_expected.to raise_error ActiveRecord::RecordNotFound }
     end
   end
-  
+
   describe 'GET #new' do
     it 'リクエストが成功する' do
       get signup_url
       expect(response.status).to eq 200
     end
   end
-  
+
   describe 'POST #create' do
     context '適切な条件' do
       it 'リクエストに成功する。' do
@@ -42,7 +42,7 @@ describe UsersController, type: :request do
         expect(response).to redirect_to User.last
       end
     end
-    
+
     context '不適切な条件' do
       it 'リクエストには成功する' do
         post users_url, params: { user: FactoryBot.attributes_for(:fail_himura) }
@@ -68,10 +68,10 @@ describe UsersController, type: :request do
   describe 'GET #edit' do
     let(:himura) { FactoryBot.create :himura }
     context 'ログインユーザーが自分自身を編集' do
-    before 'ログイン状態にする' do
-      allow_any_instance_of(ActionDispatch::Request)
-      .to receive(:session).and_return(user_id: himura.id)
-    end
+      before 'ログイン状態にする' do
+        allow_any_instance_of(ActionDispatch::Request)
+          .to receive(:session).and_return(user_id: himura.id)
+      end
       it 'リクエストが成功' do
         get edit_user_url himura
         expect(response.status).to eq 200
@@ -90,22 +90,22 @@ describe UsersController, type: :request do
       let(:himura) { FactoryBot.create :himura }
       before 'ログイン状態にする' do
         allow_any_instance_of(ActionDispatch::Request)
-        .to receive(:session).and_return(user_id: himura.id)
+          .to receive(:session).and_return(user_id: himura.id)
       end
-        it 'トップページにリダイレクトされる' do
-          get edit_user_url kimika.id
-          expect(response).to redirect_to root_url
-        end
+      it 'トップページにリダイレクトされる' do
+        get edit_user_url kimika.id
+        expect(response).to redirect_to root_url
+      end
     end
     # 未ログインuserがアクセスしようとしたときにredirectされることは明示的に検証できてはいない。
     # unless user.id == current_user.id でエラーが起きるため代替的に検証できてはいるだろうが、このエラーをうまく表現する方法がわからないので保留。
   end
-  
+
   describe 'PATCH #update' do
     let(:himura) { FactoryBot.create :himura }
     before 'ログイン状態にする' do
       allow_any_instance_of(ActionDispatch::Request)
-      .to receive(:session).and_return(user_id: himura.id)
+        .to receive(:session).and_return(user_id: himura.id)
     end
     context '適切な条件' do
       it 'リクエストに成功する' do

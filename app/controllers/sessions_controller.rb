@@ -1,6 +1,5 @@
 class SessionsController < ApplicationController
-  def new
-  end
+  def new; end
 
   def create
     email = params[:session][:email].downcase
@@ -13,25 +12,25 @@ class SessionsController < ApplicationController
       render :new
     end
   end
-  #プライベートメソッドのloginを使って認証している。
+  # プライベートメソッドのloginを使って認証している。
 
   def destroy
     session[:user_id] = nil
     flash[:success] = 'ログアウトしました'
     redirect_to root_url
   end
-  
+
   private
-  
+
   def login(email, password)
     @user = User.find_by(email: email)
-    if @user && @user.authenticate(password)
+    if @user&.authenticate(password)
       session[:user_id] = @user.id
-      return true
+      true
     else
-      return false
+      false
     end
   end
-  #このアクションが呼び出されてtrueが返れば、ログイン状態になる
-  #正式にはsession[:user_id]にログインユーザのidが代入された時点
+  # このアクションが呼び出されてtrueが返れば、ログイン状態になる
+  # 正式にはsession[:user_id]にログインユーザのidが代入された時点
 end

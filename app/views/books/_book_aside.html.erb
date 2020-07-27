@@ -1,11 +1,10 @@
 <aside class='col-sm-4'>
   <table class="table text-center">
     <tr><td>題名</td><td><%= @book.title %></td></tr>
-    <tr><td>著者</td><td><%= @book.author %></td></tr>
-    <tr><td>本ID</td><td><%= @book.id %></td></tr>    
+    <tr><td>著者</td><td><%= @book.author %></td></tr>   
     <tr><td>ISBN</td><td><%= @book.isbn %></td></tr>
     <tr><td>出版社</td><td><%= @book.publisher %></td></tr>
-    <tr><td>初版発売日</td><td><%= @book.release_date %></td></tr>    
+    <tr><td>初版発売日</td><td><%= @book.release_date %></td></tr>
   </table>
 
   <%= render 'recommendations/recommend_button', one_book: @book %>

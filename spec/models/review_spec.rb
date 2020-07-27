@@ -2,17 +2,17 @@ require 'rails_helper'
 
 RSpec.describe Review, type: :model do
   before do
-  @user = FactoryBot.create(:user)
-  @book = FactoryBot.create(:book)
+    @user = FactoryBot.create(:user)
+    @book = FactoryBot.create(:book)
   end
-  
+
   describe '適切な条件のため有効' do
-    it "適切な条件のため有効" do
+    it '適切な条件のため有効' do
       review = Review.new(
-      user_id: @user.id,
-      book_id: @book.id,
-      rev_title: "sample_rev_title",
-      content: "sample review content.",
+        user_id: @user.id,
+        book_id: @book.id,
+        rev_title: 'sample_rev_title',
+        content: 'sample review content.'
       )
       expect(review).to be_valid
     end
@@ -49,7 +49,7 @@ RSpec.describe Review, type: :model do
     let(:review) { Review.new(params) }
     context 'rev_titleの文字数' do
       it '50文字以上のため無効' do
-        params.merge!(rev_title: 'test_review_title'*10, content: 'sample review content.')
+        params.merge!(rev_title: 'test_review_title' * 10, content: 'sample review content.')
         review = Review.new(params)
         expect(review).to be_invalid
       end
@@ -61,13 +61,12 @@ RSpec.describe Review, type: :model do
         expect(review).to be_invalid
       end
       it '1万字以上のため無効' do
-        params.merge!(rev_title: 'test_review_title', content: 'test review content over 10,000 characters. '*300)
+        params.merge!(rev_title: 'test_review_title', content: 'test review content over 10,000 characters. ' * 300)
         review = Review.new(params)
         expect(review).to be_invalid
       end
     end
   end
-
 end
 
 # reviewの投稿失敗パターン

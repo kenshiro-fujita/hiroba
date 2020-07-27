@@ -1,6 +1,6 @@
 class RecommendationsController < ApplicationController
   before_action :require_user_logged_in
-  
+
   def create
     good_book = Book.find(params[:book_id])
     current_user.recommend(good_book)

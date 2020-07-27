@@ -11,7 +11,7 @@ RSpec.describe Book, type: :model do
       expect(@book).to be_valid
     end
   end
-  
+
   describe 'ISBN関連の異常' do
     before do
       @book = Book.new(
@@ -19,41 +19,41 @@ RSpec.describe Book, type: :model do
         author: 'sample_author',
         publisher: 'sample_publisher',
         release_date: Date.today
-        )
+      )
     end
     context '桁数' do
       it '桁数が少ないため無効。' do
-        @book.isbn = 123456789
+        @book.isbn = 123_456_789
         expect(@book).to be_invalid
       end
       it '10~13桁の間であるため無効。' do
-        @book.isbn = 1234567890123456
+        @book.isbn = 1_234_567_890_123_456
         expect(@book).to be_invalid
       end
       it '桁数が多いため無効。' do
-        @book.isbn = 1234567890123456
+        @book.isbn = 1_234_567_890_123_456
         expect(@book).to be_invalid
       end
     end
     context '数値以外の不正'
-      it '数値以外が使われているため無効' do
-        @book.isbn = '123456789a'
-        expect(@book).to be_invalid
-      end
-      it 'nilであるため無効' do
-        @book.isbn = ''
-        expect(@book).to be_invalid
-      end
+    it '数値以外が使われているため無効' do
+      @book.isbn = '123456789a'
+      expect(@book).to be_invalid
+    end
+    it 'nilであるため無効' do
+      @book.isbn = ''
+      expect(@book).to be_invalid
+    end
   end
   describe '要素のnilによる異常' do
     before do
       @book = Book.new(
-        isbn: 1234567890,
+        isbn: 1_234_567_890,
         title: 'sample_book_title',
         author: 'sample_author',
         publisher: 'sample_publisher',
         release_date: Date.today
-        )
+      )
     end
     it 'titleがnilであるため登録できない' do
       @book.title = ''
@@ -71,14 +71,14 @@ RSpec.describe Book, type: :model do
   describe 'release_date関連の異常' do
     before do
       @book = Book.new(
-        isbn: 1234567890123,
+        isbn: 1_234_567_890_123,
         title: 'sample_book_title3',
         author: 'sample_author3',
         publisher: 'sample_publisher3'
-        )
+      )
     end
     it 'release_dateがnilであるため登録できない' do
-      @book.release_date = ""
+      @book.release_date = ''
       expect(@book).to be_invalid
     end
     it 'release_dateがdate形式でないため登録できない' do

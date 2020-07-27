@@ -8,13 +8,13 @@ RSpec.describe User, type: :model do
         email: 'sample_adress@sample.com',
         password: '1234asdf00',
         password_confirmation: '1234asdf00'
-        )
+      )
       expect(user).to be_valid
     end
   end
-  
+
   describe 'メールアドレス関係の不備' do
-    let(:params) { { name: 'sample_user',email: email, password: '1234asdf', password_confirmation: '1234asdf'} }
+    let(:params) { { name: 'sample_user', email: email, password: '1234asdf', password_confirmation: '1234asdf' } }
     let(:user) { User.new(params) }
     context '@がない' do
       let(:email) { 'sample123sample.com' }
@@ -23,19 +23,19 @@ RSpec.describe User, type: :model do
       end
     end
     context '@の後にカンマがない' do
-      let(:email) { 'sample456@sample.com'}
+      let(:email) { 'sample456@sample.com' }
       it '無効であること' do
         expect(user).to be_valid
       end
     end
   end
-  
+
   describe 'パスワード関係の不備' do
-    let(:params) { {name: 'sample_user',email: 'sample_passaddress@sample.com' } }
-    let(:user) { User.new(params)}
+    let(:params) { { name: 'sample_user', email: 'sample_passaddress@sample.com' } }
+    let(:user) { User.new(params) }
     context '文字数の不備' do
       it '8文字に満たないため無効。' do
-        params.merge!(password: '1234asd',password_confirmation: '1234asd')
+        params.merge!(password: '1234asd', password_confirmation: '1234asd')
         user = User.new(params)
         expect(user).to be_invalid
       end
