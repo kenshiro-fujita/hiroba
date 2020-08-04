@@ -18,8 +18,7 @@ class BooksController < ApplicationController
   end
 
   def new
-    @book = Book.new
-    # 投稿フォーム用空インスタンス
+    @book = Book.new  #投稿フォーム用空インスタンス
   end
 
   def create
