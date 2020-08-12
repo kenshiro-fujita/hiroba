@@ -1,0 +1,23 @@
+ja:
+  activerecord:
+    models:
+      user: ユーザー
+    attributes:
+      user:
+        name: 名前
+        email: メールアドレス
+        password: パスワード
+    models:
+      book: 本
+    attributes:
+      book:
+        title: タイトル
+        author: 著者
+        publisher: 出版社
+        isbn: ISBN番号
+    models:
+      review: 書評
+    attributes:
+      review:
+        rev_title: 書評のタイトル
+        content: 書評

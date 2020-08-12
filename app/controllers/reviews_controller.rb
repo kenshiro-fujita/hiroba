@@ -19,6 +19,7 @@ class ReviewsController < ApplicationController
     else
       flash[:danger] = '書評の投稿に失敗しました'
       redirect_to book_path(@review.book_id)
+      # render :'book/show/@review.book_id'
     end
   end
 
