@@ -48,13 +48,11 @@ test:
 #     url: <%= ENV['DATABASE_URL'] %>
 #
 production:
-  adapter: postgresql
-  encoding: unicode
-  pool: 5
+  <<: *default
   database: hiroba_production
-  username: hiroba
-  password: <%= ENV['HIROBA_DATABASE_PASSWORD'] %>
-# 上記はheroku用の設定。元々は以下。
+  username: root
+  password: sql47bonzin
+# 上記はAWS用の設定
 # production:
 #   <<: *default
 #   database: hiroba_production
