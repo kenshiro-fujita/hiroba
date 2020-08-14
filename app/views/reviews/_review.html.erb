@@ -12,7 +12,7 @@
         <%= link_to "レビュータイトル：#{review.rev_title}", book_review_path(book.id, review.id) %>
       </div>
       <div class="card-body">
-        <%= review.content %>
+        <%= review.content.truncate(100, separator: '  ...') %>
       </div>
     </div>
 <% end %>

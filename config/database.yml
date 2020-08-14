@@ -53,9 +53,3 @@ production:
   username: <%= ENV['DB_USERNAME']%>
   password: <%= ENV['DB_PASSWORD']%>
   host: <%= ENV['DB_HOSTNAME']%>
-# 上記はAWS用の設定
-# production:
-#   <<: *default
-#   database: hiroba_production
-#   username: root #元々hirobaだったのをrootにした。
-#   password: <%= ENV['HIROBA_DATABASE_PASSWORD'] %>
