@@ -39,6 +39,7 @@ gem 'kaminari'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false
+gem 'rails-i18n' #日本語化
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -57,5 +58,5 @@ group :test do
   gem 'webdrivers'
 end
 
-#group :production do
-#end
+group :production do
+end
