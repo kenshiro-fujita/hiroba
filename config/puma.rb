@@ -8,10 +8,11 @@ threads_count = ENV.fetch('RAILS_MAX_THREADS') { 5 }
 threads threads_count, threads_count
 
 # Specifies the `port` that Puma will listen on to receive requests; default is 3000.
-#
-port        ENV.fetch('PORT') { 3000 }
-# bind "unix://#{Rails.root}/tmp/sockets/puma.sock"
-#開発環境ではportの行を有効にしbindをコメントアウト、本番ではbindの行を有効にしportをコメントアウトする。
+
+#port        ENV.fetch('PORT') { 3000 }
+bind "unix:///var/www/rails/hiroba/tmp/sockets/puma.sock"
+
+
 
 # Specifies the `environment` that Puma will run in.
 #
