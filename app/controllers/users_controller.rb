@@ -1,8 +1,6 @@
 class UsersController < ApplicationController
   before_action :correct_user, only: %i[edit update destroy]
 
-  def index; end
-
   def show
     @user = User.find(params[:id])
     @reviews = @user.my_reviews.order(id: :desc).page(params[:page])

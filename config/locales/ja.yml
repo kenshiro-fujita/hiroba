@@ -21,3 +21,9 @@ ja:
       review:
         rev_title: 書評のタイトル
         content: 書評
+  views:
+    pagination:
+      first: 最初
+      last: 最後
+      previous: 前ページ
+      next: 次ページ
