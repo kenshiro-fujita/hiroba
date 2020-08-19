@@ -1,11 +1,20 @@
-# README
+本の書評投稿サイトです。
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+○開発環境
+開発言語及びフレームワーク: Ruby2.7.1 / Rails5.2.4.3 / HTML / CSS / Javascript
+インフラ： Docker
+テスト：RSpec
+データベース：MySQL(AWS RDS)
 
-Things you may want to cover:
+○運用環境
+AWS (VPC / EC2 / RDS / Route53 / ACM )
 
-* Ruby version
+○機能
+ユーザー登録書評の投稿/本の登録
+ログイン認証 ： Railsのsession機能
+ユーザー/本/書評のお気に入り登録 ： 中間テーブルへの保存
+ページネーション ： Gemを使用（kaminari）
+HTTPS対応 ： AWS ACM
 
 * System dependencies
 

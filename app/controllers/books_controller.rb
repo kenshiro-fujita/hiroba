@@ -4,15 +4,15 @@ class BooksController < ApplicationController
 
   def index
     @search = Book.ransack(params[:q])
-    @books = @search.result.sort.reverse
+    @books = @search.result.order(id: :desc).page(params[:page]).per(5)
   end
 
   def show
-    @book = Book.find(params[:id]) # bookに紐づいたreviewは book.reviewsで取得できる。
+    @book = Book.find(params[:id])
     @user = current_user
 
     if logged_in?
-      @review = current_user.reviews.build # 投稿フォーム用の空インスタンス。
+      @review = current_user.reviews.build
       @user_review = Review.where(user_id: @user, book_id: @book).first # 条件分岐用
     end
   end

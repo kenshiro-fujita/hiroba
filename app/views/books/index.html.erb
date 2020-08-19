@@ -11,6 +11,7 @@
 
 <% if @books.any? %>
   <%= render 'books/book_summary', books: @books %>
+  <%= paginate @books %>
 <% else %>
   <p>本が登録されていません。</p>
 <% end %>
