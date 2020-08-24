@@ -11,7 +11,7 @@
           <%= "レビュータイトル：#{@review.rev_title}" %>
         </div>
         <div class="card-body">
-          <%= @review.content %>
+          <%= simple_format(@review.content) %>
         </div>
       </div>
       <% if current_user == @user %>
