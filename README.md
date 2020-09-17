@@ -15,19 +15,3 @@ AWS (VPC / EC2 / RDS / Route53 / ACM )
 ユーザー/本/書評のお気に入り登録 ： 中間テーブルへの保存
 ページネーション ： Gemを使用（kaminari）
 HTTPS対応 ： AWS ACM
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
